@@ -1,22 +1,13 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import * as firebase from "firebase/app";
+import "firebase/database";
 
 Vue.use(Vuex);
 
 const variables = {
   state: {
-    posts: [
-      {
-        name: "Dani Edo",
-        text:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores fugiat eveniet quisquam porro quas unde dignissimos expedita suscipit eligendi blanditiis. Quidem eius sunt sed expedita nesciunt error temporibus impedit maxime."
-      },
-      {
-        name: "Picolo",
-        text:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores fugiat eveniet quisquam porro quas unde dignissimos expedita suscipit eligendi blanditiis. Quidem eius sunt sed expedita nesciunt error temporibus impedit maxime."
-      }
-    ]
+    posts: []
   },
   mutations: {
     ADD_POST: (state, posts) => {
@@ -36,8 +27,16 @@ const variables = {
     removeAll: context => {
       context.commit("REMOVE_ALL");
     },
-    removePost: ({ commit }, post) => {
-      commit("REMOVE_POST", post);
+    removePost: (context, post) => {
+      context.commit("REMOVE_POST", post);
+    },
+    getFirebaseData: context => {
+      const firebaseRef = firebase.database().ref("/");
+      firebaseRef.once("value").then(snapshot => {
+        snapshot.val().map(snap => {
+          context.commit("ADD_POST", snap);
+        });
+      });
     }
   },
   modules: {},

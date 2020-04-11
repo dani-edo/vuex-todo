@@ -1,7 +1,11 @@
 <template>
   <div>
     <h1 class="d-inline-block text-center mb-5">Posts</h1>
-    <v-btn color="error" class="d-inline-block float-right mb-3 ml-auto" @click="removeAllData">
+    <v-btn
+      color="error"
+      class="d-inline-block float-right mb-3 ml-auto"
+      @click="removeAllData"
+    >
       Clear All
     </v-btn>
     <v-card
@@ -40,7 +44,7 @@ export default {
       this.removePost(post);
     },
     removeAllData() {
-      this.removeAll()
+      this.removeAll();
     }
   }
 };

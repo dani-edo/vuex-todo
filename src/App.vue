@@ -18,17 +18,22 @@
 <script>
 import FrontPage from "./components/FrontPage";
 import BackPage from "./components/BackPage";
+import { mapActions } from "vuex";
 
 export default {
   name: "App",
-
   components: {
     FrontPage,
     BackPage
   },
-
-  data: () => ({
-    //
-  })
+  mounted() {
+    this.getFirebaseDatas();
+  },
+  methods: {
+    ...mapActions(["getFirebaseData"]),
+    getFirebaseDatas() {
+      this.getFirebaseData();
+    }
+  }
 };
 </script>
