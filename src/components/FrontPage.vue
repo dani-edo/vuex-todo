@@ -41,7 +41,7 @@
           </v-btn>
 
           <v-btn color="error" class="mr-4" @click="reset">
-            Reset Form
+            <v-icon>clear_all</v-icon>
           </v-btn>
         </v-form>
       </v-col>
@@ -74,7 +74,7 @@ export default {
     },
     onSubmit() {
       if (this.validate()) {
-        document.querySelector('form').submit()
+        document.querySelector("form").submit();
       }
     }
   }
