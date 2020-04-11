@@ -1,6 +1,9 @@
 <template>
   <div>
-    <h1 class="text-center mb-5">Posts</h1>
+    <h1 class="d-inline-block text-center mb-5">Posts</h1>
+    <v-btn color="error" class="d-inline-block float-right mb-3 ml-auto" @click="removeAllData">
+      Clear All
+    </v-btn>
     <v-card
       color="#385F73"
       dark
@@ -16,7 +19,7 @@
 
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="red" @click="removePost(index)">
+        <v-btn color="red" @click="removePostData(index)">
           <v-icon>clear</v-icon>
         </v-btn>
       </v-card-actions>
@@ -25,16 +28,19 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from "vuex";
+import { mapState, mapActions } from "vuex";
 
 export default {
   computed: {
     ...mapState(["posts"])
   },
   methods: {
-    ...mapMutations(["REMOVE_POST"]),
-    removePost(post) {
-      this.REMOVE_POST(post);
+    ...mapActions(["removeAll", "removePost"]),
+    removePostData(post) {
+      this.removePost(post);
+    },
+    removeAllData() {
+      this.removeAll()
     }
   }
 };

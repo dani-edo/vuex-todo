@@ -12,7 +12,7 @@ const variables = {
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores fugiat eveniet quisquam porro quas unde dignissimos expedita suscipit eligendi blanditiis. Quidem eius sunt sed expedita nesciunt error temporibus impedit maxime."
       },
       {
-        name: "Ucil",
+        name: "Picolo",
         text:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores fugiat eveniet quisquam porro quas unde dignissimos expedita suscipit eligendi blanditiis. Quidem eius sunt sed expedita nesciunt error temporibus impedit maxime."
       }
@@ -24,11 +24,20 @@ const variables = {
     },
     REMOVE_POST: (state, index) => {
       state.posts.splice(index, 1);
+    },
+    REMOVE_ALL: state => {
+      state.posts = [];
     }
   },
   actions: {
     addPost: (context, post) => {
-      context.commit("ADD_POST", post)
+      context.commit("ADD_POST", post);
+    },
+    removeAll: context => {
+      context.commit("REMOVE_ALL");
+    },
+    removePost: ({ commit }, post) => {
+      commit("REMOVE_POST", post);
     }
   },
   modules: {},
