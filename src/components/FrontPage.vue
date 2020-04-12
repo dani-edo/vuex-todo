@@ -60,7 +60,7 @@ export default {
       ],
       textRules: [
         v => !!v || "Post is required",
-        v => (v && v.length <= 100) || "Post must be less than 100 characters"
+        v => (v && v.length <= 300) || "Post must be less than 300 characters"
       ]
     },
     email: "",
@@ -78,11 +78,34 @@ export default {
       this.$refs.form.reset();
     },
     ...mapActions(["sendFirebaseData"]),
+    capitalize(str) {
+      const regex = /(^|\s)[a-z]/g;
+      return str.replace(regex, function upperCase(e) {
+        return e.toUpperCase();
+      });
+    },
+    addZero(i) {
+      if (i < 10) {
+        i = "0" + 1;
+      }
+      return i;
+    },
     onSubmit() {
       if (this.validate()) {
+        const date = new Date();
         const newPost = {
-          name: this.newPost.name,
-          text: this.newPost.text
+          name: this.capitalize(this.newPost.name),
+          text: this.newPost.text,
+          time:
+            this.addZero(date.getHours()) +
+            ":" +
+            this.addZero(date.getMinutes()) +
+            " - " +
+            date.getDate() +
+            "/" +
+            date.getMonth() +
+            "/" +
+            date.getFullYear()
         };
         this.sendFirebaseData(newPost);
         this.reset();

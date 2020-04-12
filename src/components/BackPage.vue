@@ -17,11 +17,10 @@
     >
       <v-card-title class="headline">{{ post.name }}</v-card-title>
 
-      <v-card-subtitle>{{ post.key }}</v-card-subtitle>
-
       <v-card-text>{{ post.text }}</v-card-text>
 
       <v-card-actions>
+        <v-card-subtitle>{{ post.time }}</v-card-subtitle>
         <v-spacer></v-spacer>
         <v-btn color="red" @click="deleteFirebaseDatas(post.key)">
           <v-icon>clear</v-icon>
