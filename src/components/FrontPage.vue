@@ -77,14 +77,14 @@ export default {
     reset() {
       this.$refs.form.reset();
     },
-    ...mapActions(["addPost"]),
+    ...mapActions(["sendFirebaseData"]),
     onSubmit() {
       if (this.validate()) {
         const newPost = {
           name: this.newPost.name,
           text: this.newPost.text
         };
-        this.addPost(newPost);
+        this.sendFirebaseData(newPost);
         this.reset();
       }
     }

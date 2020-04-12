@@ -4,26 +4,26 @@
     <v-btn
       color="error"
       class="d-inline-block float-right mb-3 ml-auto"
-      @click="removeAllData"
+      @click="deleteFirebaseDatas()"
     >
       Clear All
     </v-btn>
     <v-card
       color="#385F73"
       dark
-      v-for="(post, index) in posts"
-      :key="index"
+      v-for="post in posts"
+      :key="post.key"
       class="mb-3"
     >
       <v-card-title class="headline">{{ post.name }}</v-card-title>
 
-      <v-card-subtitle>{{ post.time }}</v-card-subtitle>
+      <v-card-subtitle>{{ post.key }}</v-card-subtitle>
 
       <v-card-text>{{ post.text }}</v-card-text>
 
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="red" @click="removePostData(index)">
+        <v-btn color="red" @click="deleteFirebaseDatas(post.key)">
           <v-icon>clear</v-icon>
         </v-btn>
       </v-card-actions>
@@ -39,12 +39,9 @@ export default {
     ...mapState(["posts"])
   },
   methods: {
-    ...mapActions(["removeAll", "removePost"]),
-    removePostData(post) {
-      this.removePost(post);
-    },
-    removeAllData() {
-      this.removeAll();
+    ...mapActions(["deleteFirebaseData"]),
+    deleteFirebaseDatas(key) {
+      this.deleteFirebaseData(key);
     }
   }
 };
