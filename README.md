@@ -1,6 +1,10 @@
 # vuex-firebase-todo-list-app
 
-A simple application for my practice on Vuex and Firebase Database
+Simple application for my practice of Vuex (Vue state management) and Firebase Database, also API requests with Axios (send API to Firebase)
+
+With this application, you can make your todo list instantly by entering your name and post content. The feature of this application is that you can create todo lists instantly (of course), delete lists for individuals or collectives (delete all).
+
+The advantage of this application is that with Vuex, it can be easier to manage the state, and it is also very easy to use the state simultaneously between components. Also, with the Firebase Database, data is stored in clouds, and can be accessed by several different devices.
 
 ## Depedencies
 ```
